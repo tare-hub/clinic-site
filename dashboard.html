@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dashboard — MedCare Clinic</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="dash-body">
+
+<div class="dash-layout">
+
+  <!-- Sidebar -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="ds-brand">
+      <a href="index.html"><i class="fa fa-heartbeat"></i> Med<strong>Care</strong></a>
+    </div>
+
+    <div class="ds-user">
+      <div class="ds-avatar"><i class="fa fa-circle-user"></i></div>
+      <div class="ds-name" id="sidebarName">Patient</div>
+      <div class="ds-email" id="sidebarEmail"></div>
+    </div>
+
+    <nav class="ds-nav">
+      <a href="#" class="dsnl active" data-sec="overview">
+        <i class="fa fa-chart-pie"></i> Overview
+      </a>
+      <a href="#" class="dsnl" data-sec="appointments">
+        <i class="fa fa-calendar-check"></i> Appointments
+        <span class="ds-badge" id="apptBadge"></span>
+      </a>
+      <a href="#" class="dsnl" data-sec="records">
+        <i class="fa fa-file-medical"></i> Medical Records
+      </a>
+      <a href="#" class="dsnl" data-sec="profile">
+        <i class="fa fa-user-pen"></i> My Profile
+      </a>
+    </nav>
+
+    <div class="ds-footer">
+      <a href="appointment.html" class="ds-book-btn">
+        <i class="fa fa-plus"></i> Book Appointment
+      </a>
+      <a href="#" id="logoutBtn" class="ds-logout">
+        <i class="fa fa-right-from-bracket"></i> Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="dash-main">
+
+    <!-- Top bar -->
+    <div class="dash-topbar">
+      <button class="dash-mob-btn" id="mobToggle"><i class="fa fa-bars"></i></button>
+      <div class="dt-title" id="dtTitle">Overview</div>
+      <div class="dt-right">
+        <a href="appointment.html" class="btn btn-primary btn-sm">
+          <i class="fa fa-calendar-plus"></i> New Appointment
+        </a>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="dsec active" id="secOverview">
+      <div class="dsec-inner">
+        <div class="welcome-banner">
+          <div>
+            <h2>Good day, <span id="welcomeName">Patient</span> 👋</h2>
+            <p>Here's a summary of your health activity</p>
+          </div>
+          <a href="appointment.html" class="btn btn-primary">
+            <i class="fa fa-calendar-plus"></i> Book Appointment
+          </a>
+        </div>
+
+        <div class="ov-stats">
+          <div class="ov-stat">
+            <div class="ov-stat-icon blue"><i class="fa fa-calendar-check"></i></div>
+            <div><strong id="statTotal">0</strong><span>Total Appointments</span></div>
+          </div>
+          <div class="ov-stat">
+            <div class="ov-stat-icon green"><i class="fa fa-clock"></i></div>
+            <div><strong id="statUpcoming">0</strong><span>Upcoming</span></div>
+          </div>
+          <div class="ov-stat">
+            <div class="ov-stat-icon orange"><i class="fa fa-check-circle"></i></div>
+            <div><strong id="statCompleted">0</strong><span>Completed</span></div>
+          </div>
+          <div class="ov-stat">
+            <div class="ov-stat-icon purple"><i class="fa fa-file-medical"></i></div>
+            <div><strong>3</strong><span>Records</span></div>
+          </div>
+        </div>
+
+        <div class="ov-cards">
+          <div class="ov-card">
+            <div class="ov-card-head">
+              <h3><i class="fa fa-calendar"></i> Next Appointment</h3>
+              <a href="#" class="dsnl-link" data-sec="appointments">View all →</a>
+            </div>
+            <div id="nextAppt">
+              <div class="empty-state">
+                <i class="fa fa-calendar-xmark"></i>
+                <p>No upcoming appointments</p>
+                <a href="appointment.html" class="btn btn-primary btn-sm">Book Now</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="ov-card">
+            <div class="ov-card-head">
+              <h3><i class="fa fa-file-medical"></i> Recent Records</h3>
+            </div>
+            <div class="mini-records">
+              <div class="mini-rec"><i class="fa fa-file-pdf"></i><div><strong>Blood Test Results</strong><span>Jun 2026</span></div></div>
+              <div class="mini-rec"><i class="fa fa-file-pdf"></i><div><strong>ECG Report</strong><span>May 2026</span></div></div>
+              <div class="mini-rec"><i class="fa fa-file-pdf"></i><div><strong>Prescription</strong><span>Apr 2026</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPOINTMENTS -->
+    <section class="dsec" id="secAppointments">
+      <div class="dsec-inner">
+        <div class="dsec-head">
+          <h2>My Appointments</h2>
+          <a href="appointment.html" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New</a>
+        </div>
+        <div class="appt-filters">
+          <button class="af-btn active" data-filter="all">All</button>
+          <button class="af-btn" data-filter="pending">Pending</button>
+          <button class="af-btn" data-filter="confirmed">Confirmed</button>
+          <button class="af-btn" data-filter="completed">Completed</button>
+          <button class="af-btn" data-filter="cancelled">Cancelled</button>
+        </div>
+        <div id="apptListFull">
+          <div class="empty-state"><i class="fa fa-calendar"></i><p>No appointments yet.</p><a href="appointment.html" class="btn btn-primary btn-sm">Book Now</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECORDS -->
+    <section class="dsec" id="secRecords">
+      <div class="dsec-inner">
+        <div class="dsec-head">
+          <h2>Medical Records</h2>
+          <button class="btn btn-primary btn-sm" onclick="downloadAllRecordsPDF()">
+            <i class="fa fa-file-pdf"></i> Download All
+          </button>
+        </div>
+        <p class="sec-sub">Your records are securely stored. Contact the clinic to add or update records.</p>
+        <div class="records-grid" id="recordsGrid">
+          <div class="rec-card">
+            <div class="rec-icon pdf"><i class="fa fa-file-pdf"></i></div>
+            <div class="rec-info">
+              <strong>Blood Test Results</strong>
+              <span>Lab Report · Jun 2026</span>
+              <span class="rec-doc">Dr. Sarah Johnson</span>
+            </div>
+            <button class="btn btn-sm" onclick="downloadRecordPDF({title:'Blood Test Results',type:'Lab Report',date:'Jun 2026',doctor:'Dr. Sarah Johnson',details:'WBC: 6.5 k/uL (Normal)\nRBC: 4.8 M/uL (Normal)\nHemoglobin: 14.2 g/dL (Normal)\nHematocrit: 42% (Normal)\nPlatelets: 250 k/uL (Normal)\nGlucose: 92 mg/dL (Normal)\nCholesterol: 185 mg/dL (Normal)'})" title="Download PDF">
+              <i class="fa fa-download"></i> PDF
+            </button>
+          </div>
+          <div class="rec-card">
+            <div class="rec-icon pdf"><i class="fa fa-file-pdf"></i></div>
+            <div class="rec-info">
+              <strong>ECG Report</strong>
+              <span>Cardiology · May 2026</span>
+              <span class="rec-doc">Dr. Sarah Johnson</span>
+            </div>
+            <button class="btn btn-sm" onclick="downloadRecordPDF({title:'ECG Report',type:'Cardiology',date:'May 2026',doctor:'Dr. Sarah Johnson',details:'Heart Rate: 72 bpm (Normal)\nRhythm: Normal sinus rhythm\nPR Interval: 160 ms (Normal)\nQRS Duration: 88 ms (Normal)\nQT Interval: 400 ms (Normal)\nConclusion: No significant abnormalities detected.'})" title="Download PDF">
+              <i class="fa fa-download"></i> PDF
+            </button>
+          </div>
+          <div class="rec-card">
+            <div class="rec-icon doc"><i class="fa fa-file-lines"></i></div>
+            <div class="rec-info">
+              <strong>Prescription</strong>
+              <span>General · Apr 2026</span>
+              <span class="rec-doc">Dr. Michael Chen</span>
+            </div>
+            <button class="btn btn-sm" onclick="downloadRecordPDF({title:'Prescription',type:'General Medicine',date:'Apr 2026',doctor:'Dr. Michael Chen',details:'Medication 1: Amoxicillin 500mg — 3x daily for 7 days\nMedication 2: Ibuprofen 400mg — as needed for pain\nMedication 3: Vitamin D3 1000 IU — once daily\n\nInstructions:\n- Take with food\n- Complete full course of antibiotics\n- Avoid alcohol during treatment'})" title="Download PDF">
+              <i class="fa fa-download"></i> PDF
+            </button>
+          </div>
+          <div class="rec-card">
+            <div class="rec-icon img"><i class="fa fa-x-ray"></i></div>
+            <div class="rec-info">
+              <strong>Chest X-Ray</strong>
+              <span>Radiology · Mar 2026</span>
+              <span class="rec-doc">Dr. Emily Rodriguez</span>
+            </div>
+            <button class="btn btn-sm" onclick="downloadRecordPDF({title:'Chest X-Ray Report',type:'Radiology',date:'Mar 2026',doctor:'Dr. Emily Rodriguez',details:'Technique: PA and lateral views\nLungs: Clear, no infiltrates or consolidation\nHeart Size: Normal\nMediastinum: Normal width\nBones: No fractures or lesions\nSoft Tissues: Unremarkable\n\nImpression: Normal chest X-ray. No acute cardiopulmonary findings.'})" title="Download PDF">
+              <i class="fa fa-download"></i> PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Appointment PDF Section -->
+        <div class="dsec-head" style="margin-top:32px;">
+          <h3 style="font-size:1rem;font-weight:700;">Appointment Summaries</h3>
+          <button class="btn btn-sm" id="downloadApptsPDF" onclick="downloadAppointmentsPDF()">
+            <i class="fa fa-file-pdf"></i> Export All
+          </button>
+        </div>
+        <p class="sec-sub">Download a PDF summary of all your appointments.</p>
+        <div id="apptSummaryList"></div>
+
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="dsec" id="secProfile">
+      <div class="dsec-inner">
+        <h2>My Profile</h2>
+        <div class="profile-grid">
+
+          <form class="profile-card" id="profileForm">
+            <h3><i class="fa fa-user"></i> Personal Information</h3>
+            <div class="field-row">
+              <div class="field"><label>First Name</label><input type="text" id="profFirst" placeholder="John"></div>
+              <div class="field"><label>Last Name</label><input type="text" id="profLast" placeholder="Doe"></div>
+            </div>
+            <div class="field"><label>Email (read-only)</label><input type="email" id="profEmail" readonly></div>
+            <div class="field"><label>Phone</label><input type="tel" id="profPhone" placeholder="+1 234 567 8900"></div>
+            <div class="field-row">
+              <div class="field"><label>Date of Birth</label><input type="date" id="profDob"></div>
+              <div class="field"><label>Blood Type</label>
+                <select id="profBlood">
+                  <option value="">Select</option>
+                  <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                  <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-msg" id="profMsg"></div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+
+          <div class="profile-card">
+            <h3><i class="fa fa-key"></i> Change Password</h3>
+            <div class="field"><label>Current Password</label><input type="password" id="pwCurrent" placeholder="Enter current password"></div>
+            <div class="field"><label>New Password</label><input type="password" id="pwNew" placeholder="Min 6 characters"></div>
+            <div class="field"><label>Confirm New Password</label><input type="password" id="pwConfirm" placeholder="Repeat new password"></div>
+            <div class="form-msg" id="pwMsg"></div>
+            <button class="btn btn-primary" id="changePwBtn">Update Password</button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /dash-main -->
+</div><!-- /dash-layout -->
+
+<div id="toastContainer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

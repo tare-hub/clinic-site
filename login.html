@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Login — MedCare Clinic</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+
+<div class="auth-page">
+
+  <!-- Left Panel -->
+  <div class="auth-left">
+    <a href="index.html" class="auth-brand">
+      <i class="fa fa-heartbeat"></i>
+      <span>Med<strong>Care</strong></span>
+    </a>
+    <div class="auth-left-body">
+      <h1>Welcome Back</h1>
+      <p>Access your health records, appointments, and medical history — all in one place.</p>
+      <ul class="auth-perks">
+        <li><i class="fa fa-calendar-check"></i> View & manage your appointments</li>
+        <li><i class="fa fa-file-medical"></i> Access medical records</li>
+        <li><i class="fa fa-bell"></i> Get booking confirmations</li>
+        <li><i class="fa fa-shield-halved"></i> Secure & private</li>
+      </ul>
+    </div>
+    <img class="auth-bg-img"
+      src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=700&auto=format&fit=crop"
+      alt="clinic">
+  </div>
+
+  <!-- Right Panel -->
+  <div class="auth-right">
+    <div class="auth-card">
+
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="atab active" data-tab="loginPanel">Sign In</button>
+        <button class="atab" data-tab="registerPanel">Register</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="auth-panel active" id="loginPanel">
+        <div class="panel-icon"><i class="fa fa-circle-user"></i></div>
+        <h2>Sign In</h2>
+        <p>Enter your email and password to continue</p>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label>Email Address</label>
+            <div class="input-wrap">
+              <i class="fa fa-envelope field-icon"></i>
+              <input type="email" id="loginEmail" placeholder="your@email.com" autocomplete="email" required>
+            </div>
+            <span class="field-err" id="emailErr"></span>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <div class="input-wrap">
+              <i class="fa fa-lock field-icon"></i>
+              <input type="password" id="loginPassword" placeholder="Your password" autocomplete="current-password" required>
+              <button type="button" class="pw-eye" data-for="loginPassword"><i class="fa fa-eye"></i></button>
+            </div>
+            <span class="field-err" id="passErr"></span>
+          </div>
+
+          <div class="field-row">
+            <label class="remember-label">
+              <input type="checkbox" id="rememberMe"> Remember me
+            </label>
+            <a href="#" class="forgot-link" id="forgotLink">Forgot password?</a>
+          </div>
+
+          <div class="form-msg" id="loginMsg"></div>
+          <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+            <span>Sign In</span> <i class="fa fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <p class="auth-switch">Don't have an account? <a href="#" onclick="switchTab('registerPanel')">Create one free</a></p>
+      </div>
+
+      <!-- REGISTER -->
+      <div class="auth-panel" id="registerPanel">
+        <div class="panel-icon"><i class="fa fa-user-plus"></i></div>
+        <h2>Create Account</h2>
+        <p>Join MedCare for free and manage your health online</p>
+
+        <form id="registerForm" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label>First Name</label>
+              <div class="input-wrap">
+                <i class="fa fa-user field-icon"></i>
+                <input type="text" id="regFirst" placeholder="First Name" required>
+              </div>
+            </div>
+            <div class="field">
+              <label>Last Name</label>
+              <div class="input-wrap">
+                <i class="fa fa-user field-icon"></i>
+                <input type="text" id="regLast" placeholder="Last Name" required>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <div class="input-wrap">
+              <i class="fa fa-envelope field-icon"></i>
+              <input type="email" id="regEmail" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="field">
+            <label>Phone Number</label>
+            <div class="input-wrap">
+              <i class="fa fa-phone field-icon"></i>
+              <input type="tel" id="regPhone" placeholder="+1 234 567 8900">
+            </div>
+          </div>
+          <div class="field">
+            <label>Password <span style="color:#94a3b8;font-weight:400">(min 6 characters)</span></label>
+            <div class="input-wrap">
+              <i class="fa fa-lock field-icon"></i>
+              <input type="password" id="regPassword" placeholder="Create a strong password" required>
+              <button type="button" class="pw-eye" data-for="regPassword"><i class="fa fa-eye"></i></button>
+            </div>
+            <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+            <span class="strength-text" id="strengthText"></span>
+          </div>
+          <div class="field">
+            <label>Confirm Password</label>
+            <div class="input-wrap">
+              <i class="fa fa-lock field-icon"></i>
+              <input type="password" id="regConfirm" placeholder="Repeat your password" required>
+            </div>
+          </div>
+
+          <div class="form-msg" id="registerMsg"></div>
+          <button type="submit" class="btn btn-primary btn-full" id="registerBtn">
+            <span>Create Account</span> <i class="fa fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <p class="auth-switch">Already have an account? <a href="#" onclick="switchTab('loginPanel')">Sign in</a></p>
+      </div>
+
+      <!-- FORGOT PASSWORD -->
+      <div class="auth-panel" id="forgotPanel">
+        <div class="panel-icon"><i class="fa fa-key"></i></div>
+        <h2>Reset Password</h2>
+        <p>Enter your email and new password</p>
+
+        <form id="forgotForm" novalidate>
+          <div class="field">
+            <label>Email Address</label>
+            <div class="input-wrap">
+              <i class="fa fa-envelope field-icon"></i>
+              <input type="email" id="forgotEmail" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="field">
+            <label>New Password</label>
+            <div class="input-wrap">
+              <i class="fa fa-lock field-icon"></i>
+              <input type="password" id="forgotNew" placeholder="New password" required>
+            </div>
+          </div>
+          <div class="field">
+            <label>Confirm New Password</label>
+            <div class="input-wrap">
+              <i class="fa fa-lock field-icon"></i>
+              <input type="password" id="forgotConfirm" placeholder="Repeat new password" required>
+            </div>
+          </div>
+          <div class="form-msg" id="forgotMsg"></div>
+          <button type="submit" class="btn btn-primary btn-full">Reset Password</button>
+        </form>
+
+        <p class="auth-switch"><a href="#" onclick="switchTab('loginPanel')"><i class="fa fa-arrow-left"></i> Back to Sign In</a></p>
+      </div>
+
+    </div><!-- /auth-card -->
+  </div><!-- /auth-right -->
+</div><!-- /auth-page -->
+
+<div id="toastContainer"></div>
+<script src="js/auth.js"></script>
+</body>
+</html>

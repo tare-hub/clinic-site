@@ -1,0 +1,37 @@
+# Block direct browser access to sensitive files
+<Files "config.php">
+    Order deny,allow
+    Deny from all
+</Files>
+
+<Files "db.php">
+    Order deny,allow
+    Deny from all
+</Files>
+
+<Files "mailer.php">
+    Order deny,allow
+    Deny from all
+</Files>
+
+<Files "setup.php">
+    Order deny,allow
+    Deny from all
+</Files>
+
+<Files "test-email.php">
+    Order deny,allow
+    Deny from all
+</Files>
+
+<Files "fpdf.php">
+    Order deny,allow
+    Deny from all
+</Files>
+
+# Allow CORS for API endpoints
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</IfModule>

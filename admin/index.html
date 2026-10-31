@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — MedCare Clinic</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- Login Gate -->
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <div class="gate-logo"><i class="fa fa-heartbeat"></i> MedCare Admin</div>
+    <h2>Clinic Dashboard</h2>
+    <p>Sign in with admin credentials</p>
+    <input type="text" id="gUser" placeholder="Username">
+    <input type="password" id="gPass" placeholder="Password">
+    <div class="gate-error" id="gErr"></div>
+    <button id="gBtn" class="btn-primary">Sign In</button>
+    <p class="gate-hint">Default: <strong>admin</strong> / <strong>admin123</strong></p>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div class="dashboard hidden" id="dashboard">
+
+  <aside class="sidebar">
+    <div class="brand"><i class="fa fa-heartbeat"></i> MedCare</div>
+    <nav class="snav">
+      <a class="snl active" data-s="overview"><i class="fa fa-chart-pie"></i> Overview</a>
+      <a class="snl" data-s="appointments"><i class="fa fa-calendar-check"></i> Appointments <span class="badge" id="pendingBadge">0</span></a>
+      <a class="snl" data-s="patients"><i class="fa fa-users"></i> Patients</a>
+      <a class="snl" data-s="messages"><i class="fa fa-envelope"></i> Messages <span class="badge" id="msgBadge">0</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <a href="../index.html" class="foot-link"><i class="fa fa-arrow-left"></i> Back to Site</a>
+      <a href="#" id="logoutBtn" class="foot-link"><i class="fa fa-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="mob-btn" id="mobBtn"><i class="fa fa-bars"></i></button>
+        <h1 id="secTitle">Overview</h1>
+      </div>
+      <div class="admin-info">
+        <i class="fa fa-circle-user"></i>
+        <span id="adminName">Admin</span>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="sec active" id="secOverview">
+      <div class="stats-row">
+        <div class="stat-card blue"><i class="fa fa-users"></i><div><strong id="stPatients">0</strong><span>Patients</span></div></div>
+        <div class="stat-card green"><i class="fa fa-calendar-check"></i><div><strong id="stAppts">0</strong><span>Appointments</span></div></div>
+        <div class="stat-card orange"><i class="fa fa-clock"></i><div><strong id="stPending">0</strong><span>Pending</span></div></div>
+        <div class="stat-card red"><i class="fa fa-envelope"></i><div><strong id="stMsgs">0</strong><span>Unread Messages</span></div></div>
+      </div>
+      <div class="row2">
+        <div class="card flex2">
+          <div class="card-head"><h3>Recent Appointments</h3></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Patient</th><th>Department</th><th>Date</th><th>Status</th></tr></thead>
+            <tbody id="recentAppts"></tbody>
+          </table></div>
+        </div>
+        <div class="card flex1">
+          <div class="card-head"><h3>Status Breakdown</h3></div>
+          <div id="statusBreakdown"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPOINTMENTS -->
+    <section class="sec" id="secAppointments">
+      <div class="card">
+        <div class="card-head">
+          <h3>All Appointments</h3>
+          <div class="card-actions">
+            <input type="text" id="apptSearch" placeholder="Search..." class="search-in">
+            <select id="apptStatusFilter" class="filter-sel">
+              <option value="">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Patient</th><th>Contact</th><th>Department</th><th>Doctor</th><th>Date & Time</th><th>Type</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="apptBody"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="apptPages"></div>
+      </div>
+
+      <!-- Detail Panel -->
+      <div class="detail-panel hidden" id="detailPanel">
+        <div class="detail-inner">
+          <div class="detail-head">
+            <h3>Appointment Detail</h3>
+            <button id="detailClose"><i class="fa fa-xmark"></i></button>
+          </div>
+          <div id="detailContent"></div>
+          <div class="detail-actions">
+            <select id="detailStatus">
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+            <textarea id="detailNotes" placeholder="Add notes..." rows="3"></textarea>
+            <div style="display:flex;gap:10px;">
+              <button class="btn-primary" id="saveDetail" style="flex:1">Save Changes</button>
+              <button class="btn-primary" id="sendEmailBtn" style="flex:1;background:#0a2463;" title="Send status email to patient">
+                <i class="fa fa-envelope"></i> Email Patient
+              </button>
+            </div>
+            <div id="emailStatus" style="font-size:.78rem;min-height:16px;margin-top:4px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PATIENTS -->
+    <section class="sec" id="secPatients">
+      <div class="card">
+        <div class="card-head">
+          <h3>Registered Patients</h3>
+          <input type="text" id="patSearch" placeholder="Search..." class="search-in">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Joined</th><th>Bookings</th><th>Action</th></tr></thead>
+            <tbody id="patBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- MESSAGES -->
+    <section class="sec" id="secMessages">
+      <div class="card">
+        <div class="card-head"><h3>Contact Messages</h3></div>
+        <div id="msgList"></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

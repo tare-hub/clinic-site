@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Appointment — MedCare Clinic</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header id="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><i class="fa fa-heartbeat"></i><span>Med<strong>Care</strong></span></a>
+    <nav class="nav" id="nav">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#doctors">Doctors</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="login.html">Patient Portal</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><i class="fa fa-bars"></i></button>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <h1><i class="fa fa-calendar-check"></i> Book an Appointment</h1>
+    <p>Fill in the form below and our team will confirm your appointment within 24 hours</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container appt-container">
+
+    <div class="appt-info">
+      <h3>Why Choose MedCare?</h3>
+      <ul class="appt-features">
+        <li><i class="fa fa-check-circle"></i> Same-day appointments available</li>
+        <li><i class="fa fa-check-circle"></i> Online consultation option</li>
+        <li><i class="fa fa-check-circle"></i> Reminder SMS & Email</li>
+        <li><i class="fa fa-check-circle"></i> Easy rescheduling</li>
+        <li><i class="fa fa-check-circle"></i> Insurance accepted</li>
+      </ul>
+      <div class="appt-contact">
+        <p><i class="fa fa-phone"></i> Call: +1 (800) 123-4567</p>
+        <p><i class="fa fa-clock"></i> Mon–Sat: 8am–8pm</p>
+      </div>
+    </div>
+
+    <form class="appt-form" id="appointmentForm">
+      <h3>Appointment Details</h3>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>First Name *</label>
+          <input type="text" name="first_name" required placeholder="First Name">
+        </div>
+        <div class="form-field">
+          <label>Last Name *</label>
+          <input type="text" name="last_name" required placeholder="Last Name">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Email Address *</label>
+          <input type="email" name="email" required placeholder="example@mail.com">
+        </div>
+        <div class="form-field">
+          <label>Phone Number *</label>
+          <input type="tel" name="phone" required placeholder="+1 234 567 8900">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Date of Birth</label>
+          <input type="date" name="dob">
+        </div>
+        <div class="form-field">
+          <label>Gender</label>
+          <select name="gender">
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Department / Specialty *</label>
+          <select name="department" required>
+            <option value="">Select Department</option>
+            <option>Cardiology</option>
+            <option>Neurology</option>
+            <option>Orthopedics</option>
+            <option>Pediatrics</option>
+            <option>Ophthalmology</option>
+            <option>Dentistry</option>
+            <option>Laboratory</option>
+            <option>Radiology</option>
+            <option>General Practice</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Preferred Doctor</label>
+          <select name="doctor">
+            <option value="">Any Available</option>
+            <option>Dr. Sarah Johnson</option>
+            <option>Dr. Michael Chen</option>
+            <option>Dr. Emily Rodriguez</option>
+            <option>Dr. James Okafor</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Appointment Date *</label>
+          <input type="date" name="appointment_date" required id="apptDate">
+        </div>
+        <div class="form-field">
+          <label>Preferred Time *</label>
+          <select name="appointment_time" required>
+            <option value="">Select Time</option>
+            <option>08:00 AM</option>
+            <option>09:00 AM</option>
+            <option>10:00 AM</option>
+            <option>11:00 AM</option>
+            <option>12:00 PM</option>
+            <option>02:00 PM</option>
+            <option>03:00 PM</option>
+            <option>04:00 PM</option>
+            <option>05:00 PM</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Visit Type</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="visit_type" value="in-person" checked> In-Person</label>
+          <label class="radio-label"><input type="radio" name="visit_type" value="online"> Online / Telemedicine</label>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Describe Your Symptoms / Reason for Visit</label>
+        <textarea name="symptoms" rows="4" placeholder="Please briefly describe your symptoms or reason for visit..."></textarea>
+      </div>
+
+      <div class="form-field">
+        <label>Insurance Provider (if any)</label>
+        <input type="text" name="insurance" placeholder="e.g. Ethiopian Medin ">
+      </div>
+
+      <div class="form-msg" id="apptMsg"></div>
+
+      <button type="submit" class="btn btn-primary btn-full">
+        <i class="fa fa-calendar-check"></i> Confirm Appointment
+      </button>
+    </form>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bottom"><p>© 2026 MedCare Clinic. All rights reserved.</p></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/appointment.js"></script>
+</body>
+</html>
