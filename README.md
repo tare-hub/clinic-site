@@ -101,7 +101,7 @@ Works fully with just a browser. All data stored in `localStorage` / `sessionSto
 - ✅ Patient dashboard — view, filter, cancel appointments
 - ✅ Profile editing + password change
 - ✅ Admin dashboard — appointments, patients, messages
-- ✅ Works without PHP (localStorage fallback)
+- ✅ Work without PHP (localStorage fallback)
 - ✅ PHP + MySQL backend ready
 - ✅ Email notifications (PHPMailer + SMTP)
   - Welcome email on registration
